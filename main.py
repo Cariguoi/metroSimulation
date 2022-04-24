@@ -1,18 +1,16 @@
+import aws_connector
 import plan
 
-
 if __name__ == '__main__':
-    plan = plan.Plan
+    plan = plan.Plan()
     pricebykm = 75.000
 
-    with open('file.csv') as csvDataFile:
+    # get DATA [(name, x, y)]
+    rds = aws_connector.RDS()
+    data = rds.get_data()
 
-        # read file as csv file
-        csvReader = csv.reader(csvDataFile)
+    plan.createLine("1")
+    for station in data:
+        plan.createStation(station[0], station[1], station[2])
 
-        # for every row, print the row
-        for row in csvReader:
-            print(row)
-
-    for line in csv:
-        plan.createStation()
+    plan.addStationLine(data, "1")

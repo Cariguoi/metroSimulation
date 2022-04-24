@@ -4,16 +4,18 @@ import random
 from datetime import datetime
 
 # Parameters
-#n_cities = 20
+# n_cities = 20
 
-#n_population = 100
+# n_population = 100
 
-#mutation_rate = 0.3
+# mutation_rate = 0.3
 
 
 # Generating a list of coordenades representing each city
-# coordinates_list = [[x, y] for x, y in
-# zip(np.random.randint(0, 100, n_cities), np.random.randint(0, 100, n_cities))]
+#coordinates_list = [[x, y] for x, y in
+                    #zip(np.random.randint(0, 100, n_cities), np.random.randint(0, 100, n_cities))]
+
+
 # names_list = np.array(
 # ['Berlin', 'London', 'Moscow', 'Barcelona', 'Rome', 'Paris', 'Vienna', 'Munich', 'Istanbul', 'Kyiv',
 # 'Bucharest',
@@ -34,12 +36,12 @@ def genesis(city_list, n_population, n_cities):
     population_set = []
     for i in range(n_population):
         # Randomly generating a new solution
-        sol_i = city_list[np.random.choice(list(range(n_cities)), n_cities, replace=False)]
+        sol_i = sol_i = city_list[np.random.choice(list(range(n_cities)), n_cities, replace=False)]
         population_set.append(sol_i)
     return np.array(population_set)
 
 
-#population_set = genesis(names_list, n_population)
+# population_set = genesis(names_list, n_population)
 
 
 # 2. Evaluation of the fitness
@@ -65,7 +67,7 @@ def get_all_fitnes(population_set, cities_dict, n_population, n_cities):
     return fitnes_list
 
 
-#fitnes_list = get_all_fitnes(population_set, cities_dict)
+# fitnes_list = get_all_fitnes(population_set, cities_dict)
 
 
 # 3. Selecting the progenitors
@@ -85,7 +87,7 @@ def progenitor_selection(population_set, fitnes_list):
     return np.array([progenitor_list_a, progenitor_list_b])
 
 
-#progenitor_list = progenitor_selection(population_set, fitnes_list)
+# progenitor_list = progenitor_selection(population_set, fitnes_list)
 
 
 # Pairs crossover
@@ -111,7 +113,7 @@ def mate_population(progenitor_list):
     return new_population_set
 
 
-#new_population_set = mate_population(progenitor_list)
+# new_population_set = mate_population(progenitor_list)
 
 
 # Offspring production
@@ -133,7 +135,7 @@ def mutate_population(new_population_set, n_cities, mutation_rate):
     return mutated_pop
 
 
-#mutated_pop = mutate_population(new_population_set)
+# mutated_pop = mutate_population(new_population_set)
 
 
 # Begin
@@ -145,10 +147,16 @@ def list_coordinates_and_names(list_stations):
 
     mutation_rate = 0.3
 
-    cities_dict = list_stations
+    # cities_dict = list_stations
     names_list = []
     for i in list_stations:
         names_list.append(i[0])
+
+    coordinates_list = []
+    for i in list_stations:
+        coordinates_list.append([i[1], i[2]])
+
+    cities_dict = {x: y for x, y in zip(names_list, coordinates_list)}
 
     # Use algo
 

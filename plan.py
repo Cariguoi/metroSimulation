@@ -9,25 +9,19 @@ class Plan:
         self.listStations = []
         self.listLines = []
 
-    def createStation(self, x, y, name):
-        self.listStations.append(station.Station(x, y, name))
+    def createStation(self, name, x, y):
+        self.listStations.append(station.Station(name, x, y))
 
     def createLine(self, name):
         self.listLines.append(ligne.Lines(name))
 
-    #################
-    def generateLine(self, listStationLine, Line):
-        algo.list_coordinates_and_names(listStationLine)
-
-    #################
-
-    def addStationLine(self, listStationLine, Line):
+    def addStationLine(self, listStationLine, ligneName):
         verif = False
         for i in self.listLines:
-            if i.ligne == Line:
-                i.listStation = listStationLine
+            if i.name == ligneName:
+                listopti = algo.list_coordinates_and_names(listStationLine)
+                i.listStation = listopti
                 verif = True
                 break
         if not verif:
             print("Ligne non existante")
-
