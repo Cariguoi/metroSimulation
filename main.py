@@ -1,5 +1,6 @@
 import aws_connector
 import plan
+import map
 
 if __name__ == '__main__':
     plan = plan.Plan()
@@ -13,4 +14,6 @@ if __name__ == '__main__':
     for station in data:
         plan.createStation(station[0], station[1], station[2])
 
-    plan.addStationLine(data, "1")
+    map.map(data)
+
+    #plan.addStationLine(data, "1")

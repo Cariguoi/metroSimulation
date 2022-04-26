@@ -1,6 +1,7 @@
 import algo
 import ligne
 import station
+import map
 
 
 class Plan:
@@ -25,3 +26,7 @@ class Plan:
                 break
         if not verif:
             print("Ligne non existante")
+
+    def showplan(self):
+        map.map(self.listStations, self.listLines)
+

@@ -36,7 +36,8 @@ def genesis(city_list, n_population, n_cities):
     population_set = []
     for i in range(n_population):
         # Randomly generating a new solution
-        sol_i = sol_i = city_list[np.random.choice(list(range(n_cities)), n_cities, replace=False)]
+        print(np.random.choice(list(range(n_cities)), n_cities, replace=False))
+        sol_i = city_list[np.random.choice(list(range(n_cities)), n_cities, replace=False)]
         population_set.append(sol_i)
     return np.array(population_set)
 
