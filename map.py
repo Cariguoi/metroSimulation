@@ -10,16 +10,18 @@ def map(data, lines):
     map_osm = folium.Map(location=[48.87, 2.34], zoom_start=13)
 
     for i in data[:len(data)]:
-        map_osm.add_child(folium.RegularPolygonMarker(location=[i[1], i[2]], popup=i[0],
+        map_osm.add_child(folium.RegularPolygonMarker(location=[i.x, i.y], popup=i.name,
                                                       fill_color='#132b5e', radius=5))
 
     colors = ["blue", "red", "orange", "green", "purple"]
 
     for line in lines:
         l = []
-        for stations in line:
+        for stations in line.listStation:
             x, y = stations.getCoordonate()
             l.append(tuple([x, y]))
+
+        # rand_color = random.choices(range(256), k=3)
 
         folium.PolyLine(l, color=colors[lines.index(line)], weight=2.5, opacity=1).add_to(map_osm)
 

@@ -18,15 +18,18 @@ class Plan:
 
     def addStationLine(self, listStationLine, ligneName):
         verif = False
-        for i in self.listLines:
-            if i.name == ligneName:
+        for line in self.listLines:
+            if line.name == ligneName:
                 listopti = algo.list_coordinates_and_names(listStationLine)
-                i.listStation = listopti
+                line.listStation = []
+                for stationName in listopti:
+                    line.listStation.append(station.searchStation(stationName, self.listStations))
                 verif = True
+                print(line.listStation)
                 break
         if not verif:
             print("Ligne non existante")
 
-    def showplan(self):
+    def showPlan(self):
         map.map(self.listStations, self.listLines)
 

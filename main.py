@@ -4,7 +4,7 @@ import map
 
 if __name__ == '__main__':
     plan = plan.Plan()
-    pricebykm = 75.000
+    #pricebykm = 75.000
 
     # get DATA [(name, x, y)]
     rds = aws_connector.RDS()
@@ -13,7 +13,6 @@ if __name__ == '__main__':
     plan.createLine("1")
     for station in data:
         plan.createStation(station[0], station[1], station[2])
+    plan.addStationLine(data, "1")
+    plan.showPlan()
 
-    map.map(data)
-
-    #plan.addStationLine(data, "1")

@@ -36,7 +36,6 @@ def genesis(city_list, n_population, n_cities):
     population_set = []
     for i in range(n_population):
         # Randomly generating a new solution
-        print(np.random.choice(list(range(n_cities)), n_cities, replace=False))
         sol_i = city_list[np.random.choice(list(range(n_cities)), n_cities, replace=False)]
         population_set.append(sol_i)
     return np.array(population_set)
@@ -142,6 +141,7 @@ def mutate_population(new_population_set, n_cities, mutation_rate):
 # Begin
 def list_coordinates_and_names(list_stations):
     # Parameters
+
     n_cities = len(list_stations)
 
     n_population = 100
@@ -152,6 +152,7 @@ def list_coordinates_and_names(list_stations):
     names_list = []
     for i in list_stations:
         names_list.append(i[0])
+    names_list = np.array(names_list)
 
     coordinates_list = []
     for i in list_stations:
@@ -171,7 +172,7 @@ def list_coordinates_and_names(list_stations):
     best_solution = [-1, np.inf, np.array([])]
     for i in range(1000):
         if i % 100 == 0: print(i, fitnes_list.min(), fitnes_list.mean(), datetime.now().strftime("%d/%m/%y %H:%M"))
-        fitnes_list = get_all_fitnes(mutated_pop, cities_dict)
+        fitnes_list = get_all_fitnes(mutated_pop, cities_dict, n_population, n_cities)
 
         # Saving the best solution
         if fitnes_list.min() < best_solution[1]:
@@ -182,6 +183,9 @@ def list_coordinates_and_names(list_stations):
         progenitor_list = progenitor_selection(population_set, fitnes_list)
         new_population_set = mate_population(progenitor_list)
 
-        mutated_pop = mutate_population(new_population_set)
+        mutated_pop = mutate_population(new_population_set, n_cities, mutation_rate)
 
     print(best_solution)
+
+    return best_solution[2][0]
+

@@ -24,7 +24,7 @@ class RDS:
     def get_data(self):
         try:
             cur = self.rds.cursor()
-            cur.execute("""SELECT DISTINCT nom_station, latitude_station, logitude_station FROM stations WHERE commune_station like '%Paris%'""")
+            cur.execute("""SELECT DISTINCT nom_station, latitude_station, logitude_station FROM stations WHERE commune_station like '%Paris%' LIMIT 20""")
             query_results = cur.fetchall()
             return list(query_results)
         except Exception as e:

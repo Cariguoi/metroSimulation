@@ -6,3 +6,9 @@ class Station:
 
     def getCoordonate(self):
         return self.x, self.y
+
+
+def searchStation(name, liststations):
+    for station in liststations:
+        if name == station.name:
+            return station
